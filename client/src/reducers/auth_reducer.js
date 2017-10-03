@@ -1,13 +1,16 @@
-import {AUTH_USER, UNAUTH_USER} from '../actions/types';
+import * as types from '../actions/types';
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case AUTH_USER:
-      return {...state, authenticated: true}
+    case types.AUTH_USER:
+      return {...state, error: '', authenticated: true}
 
-    case UNAUTH_USER:
+    case types.UNAUTH_USER:
       return {...state, authenticated: false}
-    
+
+    case types.AUTH_ERROR:
+      return {...state, error: action.payload}
+
     default:
       return state;
   }

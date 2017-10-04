@@ -43,3 +43,15 @@ export const signoutUser = () => {
     type: types.UNAUTH_USER
   }
 }
+
+export const fetchMessage = () => {
+  return (dispatch) => {
+    axios.get(ROOT_URL, {
+      headers: {authorization: localStorage.getItem('token')}
+    })
+    .then(response => dispatch({
+      type: types.FETCH_MESSAGE,
+      payload: response.data
+    }));
+  }
+}
